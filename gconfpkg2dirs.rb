@@ -41,7 +41,10 @@ def directificate(name)
 	end
 	    
 	f = File.new(newfile, "w+")
-	f.puts m.post_match
+	# Commenting here, trying with full atom name
+	#f.puts m.post_match
+	#
+	f.puts line
 	puts PROCSYM + "Created file #{newfile}"
       }
     } 
