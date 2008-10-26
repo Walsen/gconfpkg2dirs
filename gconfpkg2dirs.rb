@@ -69,17 +69,20 @@ dirFiles.each do |f|
   end
 end
 
+# TODO Verify is all package.{*} exists as directories and handle them into the BACKUP directory.
 if ! File.exists?(BACKUPDIR)
   Dir.mkdir(BACKUPDIR)
   puts PROCSYM + "Creating BACKUP directory"
 end
 
 include FileUtils
-CFILES.each do |f| 
-  cp(f, BACKUPDIR)
-  puts PROCSYM + "Copying #{f} to the BACKUP directory"
-  rm(f)
-  puts PROCSYM + "Removing #{f} from the configuration directory"
+CFILES.each do |f|
+  if ! File.directory?
+    cp(f, BACKUPDIR)
+    puts PROCSYM + "Copying #{f} to the BACKUP directory"
+    rm(f)
+    puts PROCSYM + "Removing #{f} from the configuration directory"
+  end
 end
 =begin
 newdirs = Dir.entries(TEMPDIR)
