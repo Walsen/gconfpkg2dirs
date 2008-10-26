@@ -77,7 +77,7 @@ end
 
 include FileUtils
 CFILES.each do |f|
-  if ! File.directory?
+  if ! File.directory?(f)
     cp(f, BACKUPDIR)
     puts PROCSYM + "Copying #{f} to the BACKUP directory"
     rm(f)
